@@ -1,48 +1,45 @@
+import { useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { Button, ScrollView, StyleSheet, TextInput, View } from 'react-native';
-import {
-  HStack,
-  VStack,
-  Text
-} from 'native-base';
+import { Button, Text, ScrollView, StyleSheet, TextInput, View } from 'react-native';
 import { useNavigationContainerRef } from '@react-navigation/native';
+import { Input, Box, FormControl, HStack, VStack } from 'native-base';
+import * as Font from 'expo-font';
 
 export default function Login({ navigation }) {
     
-    const navigationRef = useNavigationContainerRef();
+    // load custom fonts
+    useEffect(() => {
+        Font.loadAsync({
+            "Pacifico-Regular": require('../assets/fonts/Pacifico-Regular.ttf')
+        })
+    })
 
     return (
         <View style={styles.container}>
-            <Text>Willow</Text>
-          <StatusBar style="auto" />
-          <Text>Username</Text>
-          <TextInput 
-          style={{
-            height: 40,
-            width: 200,
-            borderColor: 'gray',
-            borderWidth: 1
-          }} 
-          />
-          <Text>Password</Text>
-          <TextInput 
-          style={{
-            height: 40,
-            width: 200,
-            borderColor: 'gray',
-            borderWidth: 1
-          }} 
-          />
-          <VStack>
-            <HStack>
-                <Button title="Login" />
-                <Button title="Register" />
-            </HStack>
-            <HStack>
-                <Button title="Dashboard" onPress={() => { navigation.navigate('Dashboard') } } />
-                <Button title="Client Page" onPress={() => { navigation.navigate('ClientPage') } }/>
-            </HStack>
-          </VStack>  
+            <Text style={styles.logo}>Willow</Text>
+            <StatusBar style="auto" />
+            <Box  w={{
+                base: "70%",
+                md: "25%",
+            }}>
+                <FormControl>
+                    <FormControl.Label>Username</FormControl.Label>
+                    <Input type="text" />
+                    <FormControl.Label>Password</FormControl.Label>
+                    <Input type="password" />
+                </FormControl>
+                <VStack>
+                    <HStack>
+                        <Button title="Login" />
+                        <Button title="Register" />
+                    </HStack>
+                    <HStack>
+                        <Button title="Dashboard" onPress={() => { navigation.navigate('Dashboard') } } />
+                        <Button title="Client Page" onPress={() => { navigation.navigate('ClientPage') } }/>
+                    </HStack>
+                </VStack>  
+            </Box>
+            
         </View>
     )
 }
@@ -54,4 +51,9 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
     },
+    logo: {
+        fontFamily: "Pacifico-Regular",
+        fontSize: 60,
+        color: "green"
+    }
   });
