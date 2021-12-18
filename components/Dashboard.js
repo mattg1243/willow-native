@@ -4,6 +4,7 @@ import { Button, ScrollView, Text, StyleSheet, TextInput, View } from 'react-nat
 import { Appbar } from 'react-native-paper';
 import { DataTable } from 'react-native-paper';
 import { clientList } from '../test-data/clientList';
+import { ClientPage } from './ClientPage';
 
 export default function Dashboard ({ navigation }) {
    
@@ -23,7 +24,7 @@ export default function Dashboard ({ navigation }) {
                 <Appbar.BackAction color="#03b126" onPress={() => { navigation.navigate('Home'); }}/>
                 <Appbar.Content title="Clients" color="#03b126" />
             </Appbar.Header>
-            <Box style={styles.clientList}>
+            <Box style={styles.table}>
             <DataTable>
                 <DataTable.Header>
                     <DataTable.Title>Client</DataTable.Title>
@@ -58,7 +59,7 @@ const styles = StyleSheet.create({
         backgroundColor: "white",
         color: "#03b126"
     },
-    clientList: {
+    table: {
         flex: 1,
         padding: 25,
 

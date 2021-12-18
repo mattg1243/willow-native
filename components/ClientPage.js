@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Button, ScrollView, Text, StyleSheet, TextInput, View } from 'react-native';
 import { Appbar } from 'react-native-paper';
+import { Box } from 'native-base';
 import { DataTable } from 'react-native-paper';
 import { eventsList } from '../test-data/eventList';
 
@@ -18,6 +19,7 @@ export default function ClientPage({ navigation }) {
                 <Appbar.BackAction color="#03b126" onPress={() => { navigation.navigate('Dashboard'); }}/>
                 <Appbar.Content title="ClientName" color="#03b126" />
             </Appbar.Header>
+            <Box style={styles.table}>
             <DataTable>
                 <DataTable.Header>
                     <DataTable.Title>Date</DataTable.Title>
@@ -35,6 +37,7 @@ export default function ClientPage({ navigation }) {
                     }) 
                 }
             </DataTable>
+            </Box>
         </>
     )
 }
@@ -50,7 +53,7 @@ const styles = StyleSheet.create({
         backgroundColor: "white",
         color: "#03b126"
     },
-    clientList: {
+    table: {
         flex: 1,
         padding: 25,
 

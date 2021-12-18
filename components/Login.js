@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { Button, Text, ScrollView, StyleSheet, TextInput, View, ActivityIndicator } from 'react-native';
+import { Button, Text, ScrollView, StyleSheet, TextInput, View, ActivityIndicator, Linking } from 'react-native';
 import { Input, Box, FormControl, HStack, VStack } from 'native-base';
 import * as Font from 'expo-font';
 
@@ -29,22 +29,16 @@ export default function Login({ navigation }) {
                     base: "70%",
                     md: "25%",
                 }}>
-                    <FormControl>
+                    <FormControl style={styles.loginForm}>
                         <FormControl.Label>Username</FormControl.Label>
                         <Input type="text" onChange={(e) => { setUsername(e.target.value) }}/>
                         <FormControl.Label>Password</FormControl.Label>
                         <Input type="password" onChange={(e) => { setPassword(e.target.value) }}/>
                     </FormControl>
-                    <Text>Username from state : {username}</Text>
-                    <Text>Password from state : {password}</Text>
                     <VStack>
                         <HStack>
-                            <Button title="Login" />
-                            <Button title="Register" />
-                        </HStack>
-                        <HStack>
-                            <Button title="Dashboard" onPress={() => { navigation.navigate('Dashboard') } } />
-                            <Button title="Client Page" onPress={() => { navigation.navigate('ClientPage') } }/>
+                            <Button title="Login" onPress={() => { navigation.navigate('Dashboard') }}/>
+                            <Button title="Register" onPress={() => { Linking.openURL('https://willowapp-dev.herokuapp.com/user/register').catch(err => {console.console.error("Error");}) }} />
                         </HStack>
                     </VStack>  
                 </Box>
@@ -72,10 +66,14 @@ const styles = StyleSheet.create({
     logo: {
         fontFamily: "Pacifico-Regular",
         fontSize: 60,
-        color: "#03b126"
+        color: "#03b126",
+        padding: 25
     },
     appbar: {
         backgroundColor: "white",
         color: "#03b126"
+    },
+    loginForm: {
+        paddingBottom: 15
     }
   });
