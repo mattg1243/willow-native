@@ -8,6 +8,7 @@ import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import ClientPage from './components/ClientPage'
 import { NativeBaseProvider } from 'native-base';
+import { Appbar, Provider as PaperProvider } from 'react-native-paper';
 
 export default function App() {
 
@@ -16,11 +17,13 @@ export default function App() {
   return (
     <NavigationContainer>
         <NativeBaseProvider>
-          <Stack.Navigator initialRouteName="Home" >
-            <Stack.Screen name="Home" component={Login} />
-            <Stack.Screen name="Dashboard" component={Dashboard} />
-            <Stack.Screen name="ClientPage" component={ClientPage} />
-          </Stack.Navigator>
+          <PaperProvider>
+            <Stack.Navigator initialRouteName="Home" >
+              <Stack.Screen name="Home" component={Login} options={{ headerShown: false, }}/>
+              <Stack.Screen name="Dashboard" component={Dashboard} options={{ headerShown: false, }}/>
+              <Stack.Screen name="ClientPage" component={ClientPage} options={{ headerShown: false, }}/>
+            </Stack.Navigator>
+          </PaperProvider>
         </NativeBaseProvider>  
     </NavigationContainer>
     
