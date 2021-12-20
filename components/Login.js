@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { Button, Text, ScrollView, StyleSheet, TextInput, View, ActivityIndicator, Linking } from 'react-native';
+import { Text, ScrollView, StyleSheet, View, ActivityIndicator, Linking } from 'react-native';
 import { Input, Box, FormControl, HStack, VStack } from 'native-base';
 import * as Font from 'expo-font';
+import { Button, TextInput } from 'react-native-paper';
 
 export default function Login({ navigation }) {
     
@@ -14,7 +15,8 @@ export default function Login({ navigation }) {
     // load custom fonts
     useEffect(async () => {
         await Font.loadAsync({
-            "Pacifico-Regular": require('../assets/fonts/Pacifico-Regular.ttf')
+            "Pacifico-Regular": require('../assets/fonts/Pacifico-Regular.ttf'),
+            "Quicksand-Regular": require('../assets/fonts/Quicksand-Regular.ttf')
         })
         setAssetsLoaded(true);
     })
@@ -30,15 +32,15 @@ export default function Login({ navigation }) {
                     md: "25%",
                 }}>
                     <FormControl style={styles.loginForm}>
-                        <FormControl.Label>Username</FormControl.Label>
-                        <Input type="text" onChange={(e) => { setUsername(e.target.value) }}/>
-                        <FormControl.Label>Password</FormControl.Label>
-                        <Input type="password" onChange={(e) => { setPassword(e.target.value) }}/>
+                        <TextInput mode="outlined" outlineColor="#fff" dense="true" label="Username" onChange={(e) => { setUsername(e.target.value) }}/>
+                    </FormControl>
+                    <FormControl style={styles.loginForm}>
+                        <TextInput mode="outlined" outlineColor="#fff" dense="true" label="Password" type="password" onChange={(e) => { setPassword(e.target.value) }}/>
                     </FormControl>
                     <VStack>
                         <HStack>
-                            <Button title="Login" onPress={() => { navigation.navigate('Dashboard') }}/>
-                            <Button title="Register" onPress={() => { Linking.openURL('https://willowapp-dev.herokuapp.com/user/register').catch(err => {console.console.error("Error");}) }} />
+                            <Button color="#fff" mode="text" onPress={() => { navigation.navigate('Dashboard') }}>Login</Button>
+                            <Button color="#fff" mode="text" onPress={() => { Linking.openURL('https://willowapp-dev.herokuapp.com/user/register').catch(err => {console.console.error("Error");}) }}>Register</Button>
                         </HStack>
                     </VStack>  
                 </Box>
@@ -59,21 +61,29 @@ export default function Login({ navigation }) {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#fff',
+      backgroundColor: '#03b126',
       alignItems: 'center',
       justifyContent: 'center',
     },
     logo: {
         fontFamily: "Pacifico-Regular",
         fontSize: 60,
-        color: "#03b126",
-        padding: 25
+        color: "#fff",
+        padding: 25,
     },
     appbar: {
         backgroundColor: "white",
         color: "#03b126"
     },
     loginForm: {
-        paddingBottom: 15
+        paddingBottom: 7,
+    },
+    regText: {
+        fontFamily: "Quicksand-Regular",
+        fontSize: 16,
+        color: "#fff",
+    },
+    button: {
+        color: "white",
     }
   });

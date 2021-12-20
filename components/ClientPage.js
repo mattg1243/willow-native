@@ -19,6 +19,7 @@ export default function ClientPage({ navigation }) {
                 <Appbar.BackAction color="#03b126" onPress={() => { navigation.navigate('Dashboard'); }}/>
                 <Appbar.Content title="ClientName" color="#03b126" />
             </Appbar.Header>
+
             <Box style={styles.table}>
             <DataTable>
                 <DataTable.Header>
