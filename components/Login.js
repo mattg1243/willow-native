@@ -4,8 +4,9 @@ import { Text, ScrollView, StyleSheet, View, ActivityIndicator, Linking } from '
 import { Input, Box, FormControl, HStack, VStack } from 'native-base';
 import * as Font from 'expo-font';
 import { Button, TextInput } from 'react-native-paper';
+import axios from 'axios';
 
-export default function Login({ navigation }) {
+export default function Login({ navigation }, props) {
     
     // create state variable for asset loading
     const [assetsLoaded, setAssetsLoaded] = useState(false);
@@ -21,6 +22,15 @@ export default function Login({ navigation }) {
         setAssetsLoaded(true);
     })
 
+    const loginUser = async (username, password) => {
+        const configObject = {
+            method: "POST",
+            url: "http://localhost:3000/login",
+            data: { username: username, password: password, fromMobile: true },
+        };
+        const response = await axios(configObject).catch(err => {console.error(err);});
+    }
+
     if (assetsLoaded) {
         return (
             <>
@@ -32,14 +42,14 @@ export default function Login({ navigation }) {
                     md: "25%",
                 }}>
                     <FormControl style={styles.loginForm}>
-                        <TextInput mode="outlined" outlineColor="#fff" dense="true" label="Username" onChange={(e) => { setUsername(e.target.value) }}/>
+                        <TextInput mode="outlined" outlineColor="#fff" dense="true" label="Username" onChangeText={text => { setUsername(text) }} autoCapitalize="none"/>
                     </FormControl>
                     <FormControl style={styles.loginForm}>
-                        <TextInput mode="outlined" outlineColor="#fff" dense="true" label="Password" type="password" onChange={(e) => { setPassword(e.target.value) }}/>
+                        <TextInput mode="outlined" outlineColor="#fff" dense="true" label="Password" type="password" onChangeText={text => { setPassword(text) }} autoCapitalize="none"/>
                     </FormControl>
                     <VStack>
                         <HStack>
-                            <Button color="#fff" mode="text" onPress={() => { navigation.navigate('Dashboard') }}>Login</Button>
+                            <Button color="#fff" mode="text" onPress={() => { loginUser(username, password) }}>Login</Button>
                             <Button color="#fff" mode="text" onPress={() => { Linking.openURL('https://willowapp-dev.herokuapp.com/user/register').catch(err => {console.console.error("Error");}) }}>Register</Button>
                         </HStack>
                     </VStack>  
