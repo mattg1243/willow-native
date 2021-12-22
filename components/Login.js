@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { Text, ScrollView, StyleSheet, View, ActivityIndicator, Linking } from 'react-native';
+import * as SecureStore from 'expo-secure-store'
 import { Input, Box, FormControl, HStack, VStack } from 'native-base';
 import * as Font from 'expo-font';
 import { Button, TextInput } from 'react-native-paper';
@@ -13,6 +14,8 @@ export default function Login({ navigation }, props) {
     // create states for the text inputs
     const [username, setUsername] = useState("");    
     const [password, setPassword] = useState(""); 
+    // create state for token auth
+
     // load custom fonts
     useEffect(async () => {
         await Font.loadAsync({
@@ -25,10 +28,15 @@ export default function Login({ navigation }, props) {
     const loginUser = async (username, password) => {
         const configObject = {
             method: "POST",
-            url: "http://localhost:3000/login",
+            url: "http://localhost:3000/login/native",
             data: { username: username, password: password, fromMobile: true },
         };
-        const response = await axios(configObject).catch(err => {console.error(err);});
+        const response = await axios(configObject).catch(err => {console.error(err);})
+        if (response) {
+            console.log(response.data.clients);
+            SecureStore.setItemAsync('authToken', response.data);
+            navigation.navigate("Dashboard"); 
+        } else { console.log("Login Failed") }
     }
 
     if (assetsLoaded) {

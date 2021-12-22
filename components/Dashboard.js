@@ -5,6 +5,7 @@ import { Button, Appbar } from 'react-native-paper';
 import { DataTable } from 'react-native-paper';
 import { clientList } from '../test-data/clientList';
 import { ClientPage } from './ClientPage';
+import * as SecureStore from 'expo-secure-store'
 
 export default function Dashboard ({ navigation }) {
    
