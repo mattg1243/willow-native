@@ -33,8 +33,8 @@ export default function Login({ navigation }, props) {
         };
         const response = await axios(configObject).catch(err => {console.error(err);})
         if (response) {
-            console.log(response.data.clients);
-            SecureStore.setItemAsync('authToken', response.data);
+            console.log("Token: " + response.data.token);
+            await SecureStore.setItemAsync('authToken', response.data.token);
             navigation.navigate("Dashboard"); 
         } else { console.log("Login Failed") }
     }
@@ -50,10 +50,10 @@ export default function Login({ navigation }, props) {
                     md: "25%",
                 }}>
                     <FormControl style={styles.loginForm}>
-                        <TextInput mode="outlined" outlineColor="#fff" dense="true" label="Username" onChangeText={text => { setUsername(text) }} autoCapitalize="none"/>
+                        <TextInput mode="flat" outlineColor="#fff" activeUnderlineColor="#03b100" dense="true" label="Username" onChangeText={text => { setUsername(text) }} autoCapitalize="none"/>
                     </FormControl>
                     <FormControl style={styles.loginForm}>
-                        <TextInput mode="outlined" outlineColor="#fff" dense="true" label="Password" type="password" onChangeText={text => { setPassword(text) }} autoCapitalize="none"/>
+                        <TextInput mode="flat" outlineColor="#fff" activeUnderlineColor="#03b100" dense="true" label="Password" type="password" onChangeText={text => { setPassword(text) }} autoCapitalize="none"/>
                     </FormControl>
                     <VStack>
                         <HStack>

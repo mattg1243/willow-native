@@ -18,6 +18,8 @@ PODS:
   - ExpoModulesCore (0.6.3):
     - React-Core
     - ReactCommon/turbomodule/core
+  - EXSecureStore (11.1.0):
+    - ExpoModulesCore
   - EXSplashScreen (0.14.0):
     - ExpoModulesCore
     - React-Core
@@ -292,6 +294,8 @@ PODS:
   - RNScreens (3.10.1):
     - React-Core
     - React-RCTImage
+  - RNSVG (12.1.1):
+    - React
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -304,6 +308,7 @@ DEPENDENCIES:
   - EXKeepAwake (from `../node_modules/expo-keep-awake/ios`)
   - Expo (from `../node_modules/expo/ios`)
   - ExpoModulesCore (from `../node_modules/expo-modules-core/ios`)
+  - EXSecureStore (from `../node_modules/expo-secure-store/ios`)
   - EXSplashScreen (from `../node_modules/expo-splash-screen/ios`)
   - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
   - FBReactNativeSpec (from `../node_modules/react-native/React/FBReactNativeSpec`)
@@ -335,6 +340,7 @@ DEPENDENCIES:
   - React-runtimeexecutor (from `../node_modules/react-native/ReactCommon/runtimeexecutor`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - RNScreens (from `../node_modules/react-native-screens`)
+  - RNSVG (from `../node_modules/react-native-svg`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -360,6 +366,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/expo/ios"
   ExpoModulesCore:
     :path: "../node_modules/expo-modules-core/ios"
+  EXSecureStore:
+    :path: "../node_modules/expo-secure-store/ios"
   EXSplashScreen:
     :path: "../node_modules/expo-splash-screen/ios"
   FBLazyVector:
@@ -418,21 +426,24 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon"
   RNScreens:
     :path: "../node_modules/react-native-screens"
+  RNSVG:
+    :path: "../node_modules/react-native-svg"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
   DoubleConversion: cf9b38bf0b2d048436d9a82ad2abe1404f11e7de
-  EXApplication: bdc8dc27713235565da1029a34385229f31b8e08
-  EXConstants: 5d18484e38e8eacef7695a82214b6ac90133dedf
-  EXErrorRecovery: deea88a01d38f8b1c1181b4e1d179b0ba0e4bb5b
-  EXFileSystem: 7d1309ba6b38b82ef7fc9e80174de3f9184ac8b4
-  EXFont: 1fb13af43dc517c01c0ff21a6e32f9f9bf2ea602
-  EXKeepAwake: b571c2ad8323b2fced6e907766e2549f75119471
-  Expo: 6ca1d5ca8c8264a7131a608afcd01561f79f1e6e
-  ExpoModulesCore: d04e519b3e8e21523b195bb21a40144e30f1e163
-  EXSplashScreen: 845290df0d2730fdedc59ee6ce3b959d8079a350
+  EXApplication: 2b8f4d665e050ecddffcfb1ce258b7216b6b7777
+  EXConstants: 1514e671cb9ef1279696a44db86e2085dfa5e6ad
+  EXErrorRecovery: 9e481432a9ba7220832340911028892b49682a89
+  EXFileSystem: 35453fcb2f311ac6c67a2c77527fd4ac8dabe526
+  EXFont: e0a7f501df6e833398dfd4b075a022370e215236
+  EXKeepAwake: e190d9ee4550bcf5f8a46bdb199735f542795ebb
+  Expo: d027a753ab656b108712dc2d319abf973fae0376
+  ExpoModulesCore: a13b4c1f9cb420b4177f2675bfe83f3cd5b2d318
+  EXSecureStore: ada74c249250643e19b58692202ebaed611e8dd4
+  EXSplashScreen: 2047f95c8f7ce453aaa9790e642472a13e4f5194
   FBLazyVector: c71c5917ec0ad2de41d5d06a5855f6d5eda06971
   FBReactNativeSpec: cc6be8ab6c49d087bb53f3d6052accaabd3d9c1d
   glog: 73c2498ac6884b13ede40eda8228cb1eee9d9d62
@@ -447,7 +458,7 @@ SPEC CHECKSUMS:
   React-jsi: a8b09c29521c798f1783348b37b511ba7b3dbeb3
   React-jsiexecutor: df6abc9fafbecb8e5b7a5fbc5e6d4bd017d594d5
   React-jsinspector: 34e23860273a23695342f58eed3ffd3ba10c31e0
-  react-native-safe-area-context: 584dc04881deb49474363f3be89e4ca0e854c057
+  react-native-safe-area-context: 5cf05f49df9d17261e40e518481f2e334c6cd4b5
   React-perflogger: cc76a4254d19640f1d8ad1c66fdee800414b805c
   React-RCTActionSheet: 7448f049318d8d7e8a9a1ebb742ada721757eea8
   React-RCTAnimation: fb9b3fa1a4a9f5e6ab01b3368693ce69860ba76a
@@ -461,6 +472,7 @@ SPEC CHECKSUMS:
   React-runtimeexecutor: 493d9abb8b23c3f84e19ae221eeba92cadcb70dc
   ReactCommon: 8fea6422328e2fc093e25c9fac67adbcf0f04fb4
   RNScreens: 522705f2e5c9d27efb17f24aceb2bf8335bc7b8e
+  RNSVG: 551acb6562324b1d52a4e0758f7ca0ec234e278f
   Yoga: e6ecf3fa25af9d4c87e94ad7d5d292eedef49749
 
 PODFILE CHECKSUM: 5f807d8ec31b1eafb897aae963a243658eb9538f
