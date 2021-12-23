@@ -9,6 +9,11 @@ import Dashboard from './components/Dashboard';
 import ClientPage from './components/ClientPage'
 import { NativeBaseProvider } from 'native-base';
 import { Appbar, Provider as PaperProvider } from 'react-native-paper';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import rootReducer from './reducers'
+
+const store = createStore(rootReducer);
 
 export default function App() {
 
@@ -21,7 +26,8 @@ export default function App() {
   const Stack = createNativeStackNavigator();
 
   return (
-    <NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
         <NativeBaseProvider>
           <PaperProvider>
             <Stack.Navigator initialRouteName="Home" >
@@ -31,7 +37,9 @@ export default function App() {
             </Stack.Navigator>
           </PaperProvider>
         </NativeBaseProvider>  
-    </NavigationContainer>
+      </NavigationContainer>
+    </Provider>
+    
     
   );
 }

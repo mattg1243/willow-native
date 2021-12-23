@@ -7,20 +7,14 @@ import { ClientPage } from './ClientPage';
 import AddClientForm, { AddClient } from './AddClientForm';
 import * as SecureStore from 'expo-secure-store'
 import axios from 'axios';
+import { useSelector } from 'react-redux';
 
 export default function Dashboard ({ navigation }) {
    
-    const [clients, setClients] = useState([]);
     const [modalShown, setModalShown] = useState(false);
 
     const showModal = () => setModalShown(true);
     const hideModal = () => setModalShown(false);
-
-    const getClients = async (userID) => {
-        // this will eventually fetch from the api,
-        // but for now it simply sets state to copied array
-        setClients(clientList);
-    }
 
     const testToken = async () => {
         const token = await SecureStore.getItemAsync('authToken')
@@ -33,7 +27,7 @@ export default function Dashboard ({ navigation }) {
         const response = axios(configObject).then(console.log(response))
     }
 
-    useEffect(() => { getClients() });
+    const clientsRedux = useSelector((state) => {return state.clients}); 
 
     return (
         <>
@@ -48,12 +42,12 @@ export default function Dashboard ({ navigation }) {
                     <DataTable.Title numeric >Balance</DataTable.Title>
                 </DataTable.Header>
                 
-                {clients.map(
+                {clientsRedux.map(
                     (client) => { 
                         return (
-                            <DataTable.Row onPress={() => { navigation.navigate('ClientPage') }}>
+                            <DataTable.Row onPress={() => { navigation.navigate('ClientPage') }} key={client._id}>
                                 <DataTable.Cell>{ `${client.fname} ${client.lname}` }</DataTable.Cell>
-                                <DataTable.Cell numeric>{ `$${client.balance}` }</DataTable.Cell>
+                                <DataTable.Cell numeric>{ "$" + parseFloat(`${client.balance['$numberDecimal']}`).toFixed(2) }</DataTable.Cell>
                             </DataTable.Row>
                             )
                         }) 

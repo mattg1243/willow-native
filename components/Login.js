@@ -6,6 +6,10 @@ import { Input, Box, FormControl, HStack, VStack } from 'native-base';
 import * as Font from 'expo-font';
 import { Button, TextInput } from 'react-native-paper';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { loginAction, clientsAction } from '../actions';
+
+
 
 export default function Login({ navigation }, props) {
     
@@ -14,7 +18,8 @@ export default function Login({ navigation }, props) {
     // create states for the text inputs
     const [username, setUsername] = useState("");    
     const [password, setPassword] = useState(""); 
-    // create state for token auth
+
+    const dispatch = useDispatch();
 
     // load custom fonts
     useEffect(async () => {
@@ -33,8 +38,11 @@ export default function Login({ navigation }, props) {
         };
         const response = await axios(configObject).catch(err => {console.error(err);})
         if (response) {
-            console.log("Token: " + response.data.token);
+            console.log("Response: " + JSON.stringify(response.data.clients));
             await SecureStore.setItemAsync('authToken', response.data.token);
+            // populate redux store
+            dispatch(loginAction(response.data.user));
+            dispatch(clientsAction(response.data.clients))
             navigation.navigate("Dashboard"); 
         } else { console.log("Login Failed") }
     }
